@@ -105,7 +105,7 @@ const Login = () => {
     setMessage({ text: "Authenticating...", isError: false });
     
     try {
-      const response = await axios.post("http://localhost:8000/api/auth/login", formData);
+      const response = await axios.post("https://employee-payroll-management-system1.onrender.com/api/auth/login", formData);
       
       // ✅ FIX: Check the response structure
       // Your backend returns data directly, not wrapped in {data: {...}}
