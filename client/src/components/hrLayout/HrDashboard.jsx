@@ -28,7 +28,7 @@ const HrDashboard = () => {
   const [employees, setEmployees] = useState([]);
 
   const token = localStorage.getItem("token");
-  const API_URL = "http://localhost:8000/api";
+  const API_URL = "https://employee-payroll-management-system1.onrender.com/api";
 
   const axiosConfig = useMemo(() => ({
     headers: {
@@ -90,8 +90,8 @@ const HrDashboard = () => {
     }
 
     fetchDashboardData();
-    fetchEmployees();     // ✅ ADDED
-    fetchAttendance();    // ✅ ADDED
+    fetchEmployees();     
+    fetchAttendance();    
 
   }, [token, fetchDashboardData, fetchEmployees, fetchAttendance, navigate]);
 
@@ -221,9 +221,7 @@ console.log("Total Employees:", totalEmployees);
   <h4>Notice Board</h4>
   <p style={styles.number}>{dashboardData.noticeBoard || 0}</p>
 </div>
-      </div>
-
-      
+      </div> 
 
       <div style={styles.box}>
         <h3>Quick Actions</h3>
