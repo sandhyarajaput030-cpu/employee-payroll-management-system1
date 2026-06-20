@@ -18,7 +18,7 @@ const LeaveRequest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/api/leave/apply", form, {
+      await axios.post("https://employee-payroll-management-system1.onrender.com/api/leave/apply", form, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -38,7 +38,7 @@ setTimeout(() => {
   // ✅ Fetch My Leaves
   const fetchLeaves = useCallback(async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/leave/my", {
+      const res = await axios.get("https://employee-payroll-management-system1.onrender.com/api/leave/my", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setLeaves(res.data || []);
