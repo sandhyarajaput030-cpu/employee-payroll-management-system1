@@ -8,7 +8,7 @@ const LeaveDashboard = () => {
   const token = localStorage.getItem("token");
 
   const fetchLeaves = useCallback(async () => {
-    const res = await axios.get("http://localhost:8000/api/leave/all", {
+    const res = await axios.get("https://employee-payroll-management-system1.onrender.com/api/leave/all", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
