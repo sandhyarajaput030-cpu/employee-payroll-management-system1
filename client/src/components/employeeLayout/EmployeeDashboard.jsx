@@ -19,7 +19,7 @@ const EmployeeDashboard = () => {
   useEffect(() => {
     const fetchTodayRecord = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/attendance/today", {
+        const response = await axios.get("https://employee-payroll-management-system1.onrender.com/api/attendance/today", {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -37,7 +37,7 @@ const EmployeeDashboard = () => {
 
   const handleCheckIn = async () => {
   try {
-    await axios.post("http://localhost:8000/api/attendance/check-in", {}, {
+    await axios.post("https://employee-payroll-management-system1.onrender.com/api/attendance/check-in", {}, {
       headers: { Authorization: `Bearer ${token}` }
     });
     window.location.reload();
@@ -48,7 +48,7 @@ const EmployeeDashboard = () => {
 
 const handleCheckOut = async () => {
   try {
-    await axios.post("http://localhost:8000/api/attendance/check-out", {}, {
+    await axios.post("https://employee-payroll-management-system1.onrender.com/api/attendance/check-out", {}, {
       headers: { Authorization: `Bearer ${token}` }
     });
     window.location.reload();
