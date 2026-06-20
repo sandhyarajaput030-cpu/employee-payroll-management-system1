@@ -8,7 +8,7 @@ const NoticeBoard = () => {
 
   const token = localStorage.getItem("token");
 
-  const API = "https://employee-payroll-management-system1.onrender.com";
+  const API = "https://employee-payroll-management-system1.onrender.com/api/notices";
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
