@@ -14,7 +14,7 @@ const ProfilePage = () => {
         const token = localStorage.getItem("token");
 
         const res = await axios.get(
-          "http://localhost:8000/api/users/profile",
+          "https://employee-payroll-management-system1.onrender.com/api/users/profile",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -41,7 +41,7 @@ const handleUpdate = async () => {
     const token = localStorage.getItem("token");
 
     const res = await axios.put(
-      `http://localhost:8000/api/employees/${user._id}`,
+      `https://employee-payroll-management-system1.onrender.com/api/employees/${user._id}`,
       form,
       {
         headers: { Authorization: `Bearer ${token}` },
