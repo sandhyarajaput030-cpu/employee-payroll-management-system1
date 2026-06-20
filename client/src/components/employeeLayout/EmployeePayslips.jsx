@@ -9,7 +9,7 @@ const EmployeePayslips = () => {
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user") || "{}");
 
-  const API_URL = "http://localhost:8000/api";
+  const API_URL = "https://employee-payroll-management-system1.onrender.com/api";
 
   const fetchPayslips = useCallback(async () => {
     try {
