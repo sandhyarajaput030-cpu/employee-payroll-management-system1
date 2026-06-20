@@ -6,7 +6,7 @@ const EmployeeLeaves = () => {
   const token = localStorage.getItem("token");
 
  const fetchLeaves = useCallback(async () => {
-  const res = await axios.get("https://employee-payroll-management-system1.onrender.com", {
+  const res = await axios.get("https://employee-payroll-management-system1.onrender.com/api/leave/all", {
     headers: { Authorization: `Bearer ${token}` },
   });
   setLeaves(res.data);
@@ -14,7 +14,7 @@ const EmployeeLeaves = () => {
 
   const updateStatus = async (id, status) => {
    await axios.put(
-  `https://employee-payroll-management-system1.onrender.com`,
+  `https://employee-payroll-management-system1.onrender.com/api/leave/${id}`,
   { status },
   {
     headers: { Authorization: `Bearer ${token}` },
