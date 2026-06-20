@@ -8,8 +8,8 @@ const ViewPayslips = () => {
   const [showTable, setShowTable] = useState(false);
 
   const [selectedEmployee, setSelectedEmployee] = useState("");
-  const [employees, setEmployees] = useState([]);   // 🔥 dynamic employees
-  const [slips, setSlips] = useState([]);           // 🔥 dynamic slips
+  const [employees, setEmployees] = useState([]);  
+  const [slips, setSlips] = useState([]);          
 
   // ✅ Fetch employees
   useEffect(() => {
@@ -20,7 +20,7 @@ const ViewPayslips = () => {
   try {
     const token = localStorage.getItem("token");
 
-    const res = await axios.get("http://localhost:8000/api/employees", {
+    const res = await axios.get("https://employee-payroll-management-system1.onrender.com/api/employees", {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -45,7 +45,7 @@ const ViewPayslips = () => {
 const token = localStorage.getItem("token");
 
 const res = await axios.get(
-  `http://localhost:8000/api/payroll/${selectedEmployee}`,
+  `https://employee-payroll-management-system1.onrender.com/api/payroll/${selectedEmployee}`,
   {
     headers: {
       Authorization: `Bearer ${token}`
