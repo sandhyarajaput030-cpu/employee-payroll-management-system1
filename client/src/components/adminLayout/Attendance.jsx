@@ -39,7 +39,7 @@ const Attendance = () => {
     if (currentUser.role === "employee") {
       // ✅ Employee → only their data
       res = await axios.get(
-        "http://localhost:8000/api/attendance/my-attendance",
+        "https://employee-payroll-management-system1.onrender.com",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -49,7 +49,7 @@ const Attendance = () => {
     const formattedDate = formatDateLocal(selectedDate);
 
       res = await axios.get(
-        `http://localhost:8000/api/attendance?date=${formattedDate}`,
+        `https://employee-payroll-management-system1.onrender.com`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -71,7 +71,7 @@ const Attendance = () => {
       const month = new Date(selectedDate).getMonth();
       const year = new Date(selectedDate).getFullYear();
       const monthStr = `${year}-${String(month + 1).padStart(2, "0")}`; // YYYY-MM
-      const res = await axios.get(`http://localhost:8000/api/attendance?month=${monthStr}`, {
+      const res = await axios.get(`https://employee-payroll-management-system1.onrender.com`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.debug("Monthly attendance fetched:", Array.isArray(res.data) ? res.data.length : res.data);
@@ -105,7 +105,7 @@ const Attendance = () => {
   const fetchEmployees = useCallback(async () => {
     if (!token) return;
     try {
-      const res = await axios.get("http://localhost:8000/api/employees", {
+      const res = await axios.get("https://employee-payroll-management-system1.onrender.com", {
         headers: { Authorization: `Bearer ${token}` },
       });
       // API returns { success, count, data } — use the data array when present
@@ -249,7 +249,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
     try {
     const formattedDate = formatDateLocal(selectedDate);
       await axios.post(
-        "http://localhost:8000/api/attendance/checkin",
+        "https://employee-payroll-management-system1.onrender.com",
         { employeeId: currentUser._id, date: formattedDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -266,7 +266,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
     try {
     const formattedDate = formatDateLocal(selectedDate);
       await axios.post(
-        "http://localhost:8000/api/attendance/checkout",
+        "https://employee-payroll-management-system1.onrender.com",
         { employeeId: currentUser._id, date: formattedDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -284,7 +284,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
     try {
     const formattedDate = formatDateLocal(selectedDate);
       await axios.post(
-        "http://localhost:8000/api/attendance/checkin",
+        "https://employee-payroll-management-system1.onrender.com",
         { employeeId, date: formattedDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -301,7 +301,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
     try {
     const formattedDate = formatDateLocal(selectedDate);
       const res = await axios.post(
-        "http://localhost:8000/api/attendance/checkout",
+        "https://employee-payroll-management-system1.onrender.com",
         { employeeId, date: formattedDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -326,7 +326,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
 
   try {
     await axios.put(
-      `http://localhost:8000/api/attendance/${record._id}`,
+      `https://employee-payroll-management-system1.onrender.com`,
       { status: newStatus },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -340,7 +340,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this record?")) return;
     try {
-      await axios.delete(`http://localhost:8000/api/attendance/${id}`, {
+      await axios.delete(`https://employee-payroll-management-system1.onrender.com`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       await fetchAttendance();
