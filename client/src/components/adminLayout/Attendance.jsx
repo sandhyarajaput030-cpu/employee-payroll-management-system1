@@ -39,7 +39,7 @@ const Attendance = () => {
     if (currentUser.role === "employee") {
       // ✅ Employee → only their data
       res = await axios.get(
-        "https://employee-payroll-management-system1.onrender.com",
+        "https://employee-payroll-management-system1.onrender.com/api/attendance/my-attendance",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -49,7 +49,7 @@ const Attendance = () => {
     const formattedDate = formatDateLocal(selectedDate);
 
       res = await axios.get(
-        `https://employee-payroll-management-system1.onrender.com`,
+        `https://employee-payroll-management-system1.onrender.com/api/attendance?date=${formattedDate}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -71,7 +71,7 @@ const Attendance = () => {
       const month = new Date(selectedDate).getMonth();
       const year = new Date(selectedDate).getFullYear();
       const monthStr = `${year}-${String(month + 1).padStart(2, "0")}`; // YYYY-MM
-      const res = await axios.get(`https://employee-payroll-management-system1.onrender.com`, {
+      const res = await axios.get(`https://employee-payroll-management-system1.onrender.com/api/attendance?month=${monthStr}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.debug("Monthly attendance fetched:", Array.isArray(res.data) ? res.data.length : res.data);
@@ -105,7 +105,7 @@ const Attendance = () => {
   const fetchEmployees = useCallback(async () => {
     if (!token) return;
     try {
-      const res = await axios.get("https://employee-payroll-management-system1.onrender.com", {
+      const res = await axios.get("https://employee-payroll-management-system1.onrender.com/api/employees", {
         headers: { Authorization: `Bearer ${token}` },
       });
       // API returns { success, count, data } — use the data array when present
@@ -139,7 +139,6 @@ const displayed = employees.map((emp) => {
   return { employee: emp, record: record || null };
 });
     
-
 const getStatus = (record) => {
   if (!record) return "Absent";
 
@@ -164,8 +163,6 @@ const getStatus = (record) => {
   return "Absent";
 };
 
-
-
   // 📊 Calculations based on displayed employees
   const totalEmployees = employees.length;
  const presentCount = displayed.filter(d => getStatus(d.record) === "Present").length;
@@ -185,7 +182,6 @@ const attendancePercent = totalEmployees ? Math.round((presentCount / totalEmplo
     { name: 'Leave', value: leaveCount },
     { name: 'Absent', value: absentCount },
   ];
-
 
   // Build monthly line chart data (days of selected month)
   const month = new Date(selectedDate).getMonth();
@@ -210,7 +206,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
   const empId = rec.employeeId?._id || rec.employeeId;
   if (!empId) return;
 
-  const status = getStatus(rec); // ✅ SAME logic as cards
+  const status = getStatus(rec); 
 
   if (status === "Present") {
     presentEmployees.add(empId.toString());
@@ -241,15 +237,12 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
   return hours.toFixed(1) + " hrs" + note;
 };
 
-
-
-
   // ✅ Check In
   const handleCheckIn = async () => {
     try {
     const formattedDate = formatDateLocal(selectedDate);
       await axios.post(
-        "https://employee-payroll-management-system1.onrender.com",
+        "https://employee-payroll-management-system1.onrender.com/api/attendance/checkin",
         { employeeId: currentUser._id, date: formattedDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -266,7 +259,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
     try {
     const formattedDate = formatDateLocal(selectedDate);
       await axios.post(
-        "https://employee-payroll-management-system1.onrender.com",
+        "https://employee-payroll-management-system1.onrender.com/api/attendance/checkout",
         { employeeId: currentUser._id, date: formattedDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -284,7 +277,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
     try {
     const formattedDate = formatDateLocal(selectedDate);
       await axios.post(
-        "https://employee-payroll-management-system1.onrender.com",
+        "https://employee-payroll-management-system1.onrender.com/api/attendance/checkin",
         { employeeId, date: formattedDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -301,7 +294,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
     try {
     const formattedDate = formatDateLocal(selectedDate);
       const res = await axios.post(
-        "https://employee-payroll-management-system1.onrender.com",
+        "https://employee-payroll-management-system1.onrender.com/api/attendance/checkout",
         { employeeId, date: formattedDate },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -326,7 +319,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
 
   try {
     await axios.put(
-      `https://employee-payroll-management-system1.onrender.com`,
+      `https://employee-payroll-management-system1.onrender.com/api/attendance/${record._id}`,
       { status: newStatus },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -340,7 +333,7 @@ const lineData = Array.from({ length: daysInMonth }, (_, i) => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this record?")) return;
     try {
-      await axios.delete(`https://employee-payroll-management-system1.onrender.com`, {
+      await axios.delete(`https://employee-payroll-management-system1.onrender.com/api/attendance/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       await fetchAttendance();
