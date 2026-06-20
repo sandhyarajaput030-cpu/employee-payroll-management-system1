@@ -15,7 +15,7 @@ const Employees = () => {
   const [status, setStatus] = useState("");
 
   const token = localStorage.getItem("token");
-  const API_URL = "https://employee-payroll-management-system1.onrender.com";
+  const API_URL = "https://employee-payroll-management-system1.onrender.com/api";
 
   const fetchEmployees = useCallback(async () => {
     const res = await axios.get(`${API_URL}/employees`, {
