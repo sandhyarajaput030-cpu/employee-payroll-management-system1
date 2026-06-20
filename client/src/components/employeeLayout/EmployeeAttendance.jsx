@@ -24,7 +24,7 @@ const EmployeeAttendance = () => {
       const month = currentDate.toISOString().slice(0, 7); // YYYY-MM
 
 const res = await axios.get(
-  `http://localhost:8000/api/attendance/my-attendance?month=${month}`,
+  `https://employee-payroll-management-system1.onrender.com`,
   {
     headers: { Authorization: `Bearer ${token}` },
   }
