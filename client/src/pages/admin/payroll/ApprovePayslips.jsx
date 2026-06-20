@@ -14,7 +14,7 @@ const ApprovePayslips = () => {
       const token = localStorage.getItem("token");
 
      const res = await axios.get(
-  "http://localhost:8000/api/payroll",
+  "https://employee-payroll-management-system1.onrender.com/api/payroll",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -32,7 +32,7 @@ const ApprovePayslips = () => {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:8000/api/payroll/status/${id}`,
+        `https://employee-payroll-management-system1.onrender.com/api/payroll/status/${id}`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
