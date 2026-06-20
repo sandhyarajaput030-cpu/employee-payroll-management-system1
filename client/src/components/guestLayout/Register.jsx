@@ -98,7 +98,7 @@ const Register = () => {
     e.preventDefault();
     setMessage({ text: "Registering Profile...", isError: false });
     try {
-      await axios.post("http://localhost:8000/api/auth/register", formData);
+      await axios.post("https://employee-payroll-management-system1.onrender.com/api/auth/register", formData);
       setMessage({ text: `Registration Successful! Log in as ${formData.role.toUpperCase()}`, isError: false });
       setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
