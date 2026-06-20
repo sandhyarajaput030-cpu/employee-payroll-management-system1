@@ -26,7 +26,7 @@ const GeneratePayslips = () => {
   const fetchEmployees = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:8000/api/employees", {
+      const res = await axios.get("https://employee-payroll-management-system1.onrender.com/api/employees", {
         headers: { Authorization: `Bearer ${token}` }
       });
       setEmployees(res.data.data);
@@ -40,7 +40,7 @@ const GeneratePayslips = () => {
   try {
     const token = localStorage.getItem("token");
 const res = await axios.get(
-  `http://localhost:8000/api/payroll/defaults?employeeName=${employeeName?.trim()}`,
+  `https://employee-payroll-management-system1.onrender.com/api/payroll/defaults?employeeName=${employeeName?.trim()}`,
   { headers: { Authorization: `Bearer ${token}` } }
 );
 
@@ -91,7 +91,7 @@ const netSalary = formData.employeeName
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:8000/api/payroll/generate",
+        "https://employee-payroll-management-system1.onrender.com/api/payroll/generate",
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -116,7 +116,7 @@ const netSalary = formData.employeeName
     };
 
     await axios.put(
-      `http://localhost:8000/api/payroll/update/${currentSlipId}`,
+      `https://employee-payroll-management-system1.onrender.com/api/payroll/update/${currentSlipId}`,
       payload,
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -266,9 +266,7 @@ const netSalary = formData.employeeName
       style={styles.input}
     />
   </div>
-</div>
-
-        
+</div>  
 
         {/* Productivity Metrics */}
         <h4 style={{ ...styles.sectionTitle, color: "#30ba44" }}>Productivity Metrics</h4>
