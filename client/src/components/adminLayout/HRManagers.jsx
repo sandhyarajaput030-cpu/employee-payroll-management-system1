@@ -14,7 +14,7 @@ const HRManagers = () => {
   const [department, setDepartment] = useState("");
 
   const token = localStorage.getItem("token");
-  const API_URL = "http://localhost:8000/api";
+  const API_URL = "https://employee-payroll-management-system1.onrender.com";
 
   // ✅ FETCH
   const fetchHRs = useCallback(async () => {
