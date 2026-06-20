@@ -9,7 +9,7 @@ const EmployeeNotices = () => {
   const fetchNotices = useCallback(async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/notices",
+        "https://employee-payroll-management-system1.onrender.com/api/notices",
         {
           headers: { Authorization: `Bearer ${token}` }
         }
