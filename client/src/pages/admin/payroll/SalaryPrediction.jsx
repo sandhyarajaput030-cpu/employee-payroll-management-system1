@@ -13,7 +13,7 @@ const SalaryPrediction = () => {
     const token = localStorage.getItem("token");
 
     const res = await axios.get(
-      "http://localhost:8000/api/payroll/prediction",
+      "https://employee-payroll-management-system1.onrender.com/api/payroll/prediction",
       {
         headers: {
           Authorization: `Bearer ${token}`
